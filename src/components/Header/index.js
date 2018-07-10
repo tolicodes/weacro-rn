@@ -3,7 +3,7 @@ import React, { Fragment } from 'react';
 import { bindActionCreators } from 'redux';
 
 import { doLogout } from '../Auth/actions';
-// import DifficultyMenu from './Difficulty';
+import DifficultyMenu from './Difficulty';
 // import Options from './OptionsMenu/OptionsMenu';
 // import ProfileMenu from './ProfileMenu';
 // import SearchBar from './SearchBar';
@@ -16,7 +16,7 @@ const HeaderComponent = ({ userName, difficulty, pathname }) => {
   console.log(pathname);
   return (
     <Header>
-        <Text>I am a header</Text>
+        <DifficultyMenu difficultySetting={difficulty} />
         {/* <DifficultyMenu difficultySetting={difficulty} />
         <TagChoice loggedIn={userName} />
         <SearchBar />

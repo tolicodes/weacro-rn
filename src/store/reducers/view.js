@@ -9,7 +9,7 @@ const initialState = {
   name: '',
 };
 
-const reducer = (state = initialState, action) => {
+export default (state = initialState, action) => {
   const {
     type, difficulty, tag, currentSlide, device, name,
   } = action;
@@ -37,11 +37,3 @@ const reducer = (state = initialState, action) => {
   }
   return state;
 };
-
-export default reducer;
-
-/*
-
-    case SETMODE:
-      setState = { mode, posesLoaded: false };
-*/

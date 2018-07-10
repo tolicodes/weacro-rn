@@ -1,22 +1,57 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Menu } from 'semantic-ui-react';
-import { setDifficulty } from '../../../../store/actions/actions';
+import { bindActionCreators } from 'redux';
 
-const DifficultyList = ({ difficultySetting, setDifficulty }) => {
-  const difficulties = ['All', 'Easy', 'Intermediate', 'Hard', 'Expert'];
-  return difficulties.map((difficulty, i) => (
-    <Menu.Item
-      key={difficulty}
-      name={difficulty}
-      active={difficultySetting === difficulty}
-      onClick={() => setDifficulty(difficulty, 0)}
-    />
-  ));
+import { PropTypes } from 'prop-types';
+import { setDifficulty as setDifficultyAction } from '../../../store/actions/actions';
+import { MenuItem, MenuList } from '../styles';
+import { Text, Button } from '../../../styles';
+
+const difficulties = [
+  'All',
+  'Easy',
+  'Intermediate',
+  'Hard',
+  'Expert',
+];
+
+const DifficultyList = ({ difficultySetting, setDifficulty, isOpen }) => (
+  <MenuList isOpen={isOpen}>
+    {difficulties.map(difficulty => (
+      <Button
+        onPress={() => setDifficulty(difficulty, 0)}
+        key={difficulty}
+      >
+        <MenuItem
+          key={difficulty}
+          name={difficulty}
+          active={difficultySetting === difficulty}
+        >
+          <Text>
+            {difficulty}
+          </Text>
+        </MenuItem>
+      </Button>
+    ))}
+  </MenuList>
+);
+
+DifficultyList.propTypes = {
+  difficultySetting: PropTypes.string.isRequired,
+  setDifficulty: PropTypes.func.isRequired,
+  isOpen: PropTypes.bool.isRequired,
 };
 
-const mapStateToProps = ({ view: { difficulty } }) => ({ difficultySetting: difficulty });
-const mapDispatchToProps = dispatch => ({
-  setDifficulty: (difficulty, currentSlide) => dispatch(setDifficulty(difficulty, currentSlide)),
-});
-export default connect(mapStateToProps, mapDispatchToProps)(DifficultyList);
+export default connect(
+  ({
+    view: {
+      difficulty,
+    },
+  }) => ({
+    difficultySetting: difficulty,
+  }),
+
+  dispatch => bindActionCreators({
+    setDifficulty: setDifficultyAction,
+  }, dispatch),
+)(DifficultyList);

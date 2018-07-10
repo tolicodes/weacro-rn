@@ -6,11 +6,12 @@ import { normalize } from '../styles';
 
 const Wrapper = normalize(css`
     margin-top: 30px;
+    margin-left: -1px;
 `);
 
 export default ({ children }) => (
-    <Wrapper>
-        <Header /> 
-        { children }
-    </Wrapper>       
-)
+  <Wrapper>
+    <Header />
+    { children }
+  </Wrapper>
+);

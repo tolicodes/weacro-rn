@@ -3,7 +3,7 @@ import {
   combineReducers, createStore, applyMiddleware, compose,
 } from 'redux';
 import createSagaMiddleware from 'redux-saga';
-import { createMemoryHistory } from 'history'; 
+import { createMemoryHistory } from 'history';
 import { Provider } from 'react-redux';
 import { connectRouter, routerMiddleware, ConnectedRouter } from 'connected-react-router';
 import styled from 'styled-components';
@@ -40,14 +40,10 @@ const store = createStore(
 
 sagaMiddleware.run(saga);
 
-export default class App extends React.Component {
-  render() {
-    return (
-      <Provider store={store}>
-        <ConnectedRouter history={history}>
-          <Router/>
-        </ConnectedRouter>
-      </Provider>
-    );
-  }
-}
+export default () => (
+  <Provider store={store}>
+    <ConnectedRouter history={history}>
+      <Router />
+    </ConnectedRouter>
+  </Provider>
+);
