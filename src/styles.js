@@ -5,11 +5,11 @@ const { APP_IS_NATIVE } = process.env;
 
 export const Text = APP_IS_NATIVE
   ? RNText
-  : span;
+  : styled.span``;
 
 export const Button = APP_IS_NATIVE
   ? styled.TouchableHighlight``
-  : button;
+  : styled.button``;
 
 export const normalize = css => (
   APP_IS_NATIVE
