@@ -11,6 +11,9 @@ import styled from 'styled-components';
 import saga from '@bit/tolicodes.weacro.common.saga';
 
 import Router from './src/Router';
+import pose from './src/store/reducers/pose';
+import user from './src/store/reducers/user';
+import view from './src/store/reducers/view';
 
 const Container = styled.View`
   background-color: red;
@@ -21,7 +24,7 @@ const Container = styled.View`
 `;
 
 const history = createMemoryHistory();
-const reducer = combineReducers({ test: state => 'a'  });
+const reducer = combineReducers({ view, pose, user });
 const sagaMiddleware = createSagaMiddleware();
 
 const store = createStore(
@@ -42,9 +45,7 @@ export default class App extends React.Component {
     return (
       <Provider store={store}>
         <ConnectedRouter history={history}>
-          <Container>
-            <Router/>
-          </Container>
+          <Router/>
         </ConnectedRouter>
       </Provider>
     );
