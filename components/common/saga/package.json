@@ -1,0 +1,10 @@
+{
+  "name": "@bit/tolicodes.weacro.common.saga",
+  "version": "0.0.2",
+  "homepage": "https://bitsrc.io/tolicodes/weacro/common/saga",
+  "main": "saga.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "peerDependencies": {},
+  "license": "SEE LICENSE IN LICENSE"
+}
