@@ -1,25 +1,6 @@
 import React, { Fragment } from 'react';
-import styled from 'styled-components';
-import toView from '../../utils/toView';
+import { Wrapper } from './styles';
 
-const Wrapper = styled.View`
-    display: flex;
-    border: 1px solid gray; 
-`;
-Wrapper.displayName = 'Wrapper';
-
-const RV = toView(
-    Wrapper
-);
-
-console.log(RV.StyledNativeComponent.displayName)
-
-export default (isReactNative = true) => (
-    isReactNative
-        ? (
-            <Wrapper/>
-        )
-        : (
-            <Wrapper/>
-        )       
+export default () => (
+    <Wrapper/>
 );
