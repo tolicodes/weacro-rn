@@ -22,6 +22,7 @@ export default (state = initialState, action) => {
       setState = { tag, currentSlide };
       return updateObject(state, setState);
     case FILTER_DIFFICULTY:
+      console.log(difficulty);
       setState = { difficulty, currentSlide };
       return updateObject(state, setState);
     case SET_SLIDE_INDEX:
