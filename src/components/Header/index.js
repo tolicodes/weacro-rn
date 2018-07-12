@@ -1,11 +1,9 @@
 import { connect } from 'react-redux';
 import React from 'react';
 import { bindActionCreators } from 'redux';
-import PropTypes from 'prop-types';
 
+import { PropTypes } from 'prop-types';
 import { doLogout } from '../Auth/actions';
-import { setDifficulty } from '../../store/actions/actions';
-
 import DifficultyMenu from './Difficulty';
 // import Options from './OptionsMenu/OptionsMenu';
 // import ProfileMenu from './ProfileMenu';
@@ -13,40 +11,39 @@ import DifficultyMenu from './Difficulty';
 // import TagChoice from './TagChoice';
 
 import { Header } from './styles';
+import { Text } from '../../styles';
+import { setDifficulty } from '../../store/actions/actions';
 
-const HeaderComponent = ({
-  userName,
-  difficulty,
-  pathname,
-  setDifficultyAction,
-}) => (
+const HeaderComponent = ({ userName, difficulty, pathname }) => (
   <Header>
     {
-    pathname === '/' || pathname.includes('/pose/')
-      ? (
-        <DifficultyMenu difficulty={difficulty} setDifficulty={setDifficultyAction} />
-      )
-      : null
-    }
-    {/* <DifficultyMenu difficultySetting={difficulty} />
-        <TagChoice loggedIn={userName} />
-        <SearchBar />
-        <Menu.Menu position="right">
-            <ProfileMenu />
-            <Options isUser={userName} />
-        </Menu.Menu> */}
+        pathname === '/' || pathname.includes('/pose/')
+          ? (
+            <DifficultyMenu
+              difficulty={difficulty}
+              setDifficulty={setDifficulty}
+            />
+
+            // <TagChoice loggedIn={userName} />
+            // <SearchBar />
+
+            // <Right>
+            //   <ProfileMenu />
+            //   <Options isUser={userName} />
+            // </Right>
+          ) : null
+        }
   </Header>
 );
+
+HeaderComponent.defaultProps = {
+  userName: null,
+};
 
 HeaderComponent.propTypes = {
   userName: PropTypes.string,
   difficulty: PropTypes.string.isRequired,
   pathname: PropTypes.string.isRequired,
-  setDifficultyAction: PropTypes.func.isRequired,
-};
-
-HeaderComponent.defaultProps = {
-  userName: null,
 };
 
 export default connect(
@@ -55,21 +52,17 @@ export default connect(
       difficulty,
     },
     user: {
-      name,
+      name: userName,
     },
     router: {
       location: {
         pathname,
       },
     },
-  }) => ({
-    difficulty,
-    userName: name,
-    pathname,
-  }),
+  }) => ({ difficulty, userName, pathname }),
 
   dispatch => bindActionCreators({
     doLogout,
-    setDifficultyAction: setDifficulty,
+    setDifficulty,
   }, dispatch),
 )(HeaderComponent);

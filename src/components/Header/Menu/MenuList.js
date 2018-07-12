@@ -7,8 +7,8 @@ import { Text, Button } from '../../../styles';
 const MenuListComponent = ({
   listItems, selectedValue, setAction, isOpen,
 }) => (
-  <MenuListComponent isOpen={isOpen}>
-    {console.log(listItems) && listItems.map(item => console.log(item) && (
+  <MenuList isOpen={isOpen}>
+    {listItems.map(item => (
       <Button
         onPress={() => setAction(item, 0)}
         key={item}
@@ -22,7 +22,7 @@ const MenuListComponent = ({
         </MenuItem>
       </Button>
     ))}
-  </MenuListComponent>
+  </MenuList>
 );
 
 MenuListComponent.propTypes = {
